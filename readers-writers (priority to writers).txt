@@ -4,6 +4,7 @@ int noOfReaders=0, noOfWriters=0;
 
 ######################################################################
 Reader:
+
 acquire(readerLock);
 release(readerLock);
 
@@ -30,7 +31,7 @@ if (noOfWriters==1)
 release(w);
 
 acquire(writerLock);
-Write/update/read the object
+Write/update/read the shared object
 release(writerLock);
 
 acquire(w);
