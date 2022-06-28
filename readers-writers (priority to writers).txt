@@ -1,0 +1,40 @@
+//Shared Variables
+mutex r=false, w=false, readerLock=false, writerLock=false;
+int noOfReaders=0, noOfWriters=0;
+
+######################################################################
+Reader:
+acquire(readerLock);
+release(readerLock);
+
+acquire(r);
+noOfReaders++;
+if (noOfReaders==1)
+	acquire(writerLock);
+release(r);
+
+Read the shared object
+
+acquire(r);
+noOfReaders--;
+if (noOfReaders==0)
+	release(writerLock);
+release(r);
+
+#######################################################################
+Writer:
+acquire(w);
+noOfWriters++;
+if (noOfWriters==1)
+	acquire(readerLock);
+release(w);
+
+acquire(writerLock);
+Write/update/read the object
+release(writerLock);
+
+acquire(w);
+noOfWriters--;
+if (noOfWriters==0)
+	release(readerLock);
+release(w);
