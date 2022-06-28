@@ -24,6 +24,7 @@ release(r);
 
 #######################################################################
 Writer:
+
 acquire(w);
 noOfWriters++;
 if (noOfWriters==1)
